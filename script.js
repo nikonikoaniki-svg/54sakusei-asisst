@@ -1,5 +1,5 @@
 
-const state={materials:[],materialGroups:[],candidates:null,hints:null,support:null,last:{}};
+const state={materials:[],materialGroups:[],candidates:null,generalHints:null,support:null,last:{}};
 const $=id=>document.getElementById(id);
 
 const pick=(arr,last=null)=>{
@@ -25,12 +25,7 @@ function poolFromCandidates(name){
 }
 
 function getHintPool(tag){
-  const mode=$("theme2").value.trim()?"two_word":"one_word";
-  const out=[];
-  for(const c of state.hints?.categories||[]){
-    for(const item of c[mode]||[])if((item.tags||[]).includes(tag))out.push(item);
-  }
-  return out;
+  return state.generalHints?.[tag] || [];
 }
 
 function replaceTokens(s){
@@ -90,7 +85,7 @@ function showHint(tag,boxId,textId){
   if(!pool.length)return;
   const item=pick(pool,state.last[`hint_${tag}`]);
   state.last[`hint_${tag}`]=item;
-  $(textId).textContent=replaceTokens(item.template);
+  $(textId).textContent=replaceTokens(item);
   $(boxId).classList.remove("hide");
 }
 
@@ -140,10 +135,10 @@ function copyResult(){
 }
 
 async function init(){
-  const [materialsData,candidates,hints,support]=await Promise.all([
+  const [materialsData,candidates,generalHints,support]=await Promise.all([
     fetch("materials.json").then(r=>r.json()),
     fetch("candidates.json").then(r=>r.json()),
-    fetch("hints.json").then(r=>r.json()),
+    fetch("general_hints.json").then(r=>r.json()),
     fetch("story_support.json").then(r=>r.json())
   ]);
 
@@ -151,7 +146,7 @@ async function init(){
   state.materials=flattened.items;
   state.materialGroups=flattened.groups;
   state.candidates=candidates;
-  state.hints=hints;
+  state.generalHints=generalHints;
   state.support=support;
 
   document.querySelectorAll("input,textarea").forEach(x=>x.addEventListener("input",update));
@@ -167,7 +162,7 @@ async function init(){
 
   $("hintEvent").onclick=()=>showHint("出来事","hintBoxEvent","hintTextEvent");
   $("hintTrouble").onclick=()=>showHint("展開","hintBoxTrouble","hintTextTrouble");
-  $("hintAction").onclick=()=>showHint("展開","hintBoxAction","hintTextAction");
+  $("hintAction").onclick=()=>showHint("行動","hintBoxAction","hintTextAction");
   $("hintEnding").onclick=()=>showHint("オチ","hintBoxEnding","hintTextEnding");
 
   document.querySelectorAll("[data-next-hint]").forEach(btn=>{

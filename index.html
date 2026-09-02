@@ -12,14 +12,13 @@
   <header>
     <div class="seed">🌱</div>
     <h1>54字の種</h1>
-    <p>テーマから、物語の「柱」まで。書けないところだけ、候補やヒントを使えます。</p>
-  </header>
+    </header>
 
   <section class="card">
     <b>1</b><div>
       <h2>どんなテーマで書きますか？</h2>
       <input id="theme1" type="text" placeholder="例：クジラ">
-      <button id="randomTheme1">🎲 出してもらう</button>
+      <button class="candidate-btn" id="randomTheme1">🎲 候補を見る</button>
     </div>
   </section>
 
@@ -28,7 +27,7 @@
       <h2>もうひとつ、テーマを足しますか？</h2>
       <p class="sub">空欄でもOKです。</p>
       <input id="theme2" type="text" placeholder="例：分身">
-      <button id="randomTheme2">🎲 出してもらう</button>
+      <button class="candidate-btn" id="randomTheme2">🎲 候補を見る</button>
       <button class="ghost" id="clearTheme2">空欄にする</button>
     </div>
   </section>
@@ -37,8 +36,8 @@
     <b>3</b><div>
       <h2>何が起こる？</h2>
       <textarea id="event" rows="2" placeholder="例：クジラに分身が現れる"></textarea>
-      <button id="randomEvent">🎲 出してもらう</button>
-      <button class="ghost" id="hintEvent">💡 思いつかない</button>
+      <button class="hint-main" id="hintEvent">💡 自分で考えるヒント</button>
+      <button class="candidate-btn" id="randomEvent">🎲 候補を見る</button>
       <div class="hint hide" id="hintBoxEvent">
         <span>発想のヒント</span>
         <p id="hintTextEvent"></p>
@@ -52,8 +51,8 @@
       <h2>それで、どうなる？</h2>
       <p class="sub">困りごと、障害、変化など。</p>
       <textarea id="trouble" rows="2" placeholder="例：同じ海にいるはずなのに会えない"></textarea>
-      <button id="randomTrouble">🎲 出してもらう</button>
-      <button class="ghost" id="hintTrouble">💡 思いつかない</button>
+      <button class="hint-main" id="hintTrouble">💡 自分で考えるヒント</button>
+      <button class="candidate-btn" id="randomTrouble">🎲 候補を見る</button>
       <div class="hint hide" id="hintBoxTrouble">
         <span>発想のヒント</span>
         <p id="hintTextTrouble"></p>
@@ -67,12 +66,12 @@
       <h2>どうする？</h2>
       <p class="sub">起きたことに対して、どんな行動をする？</p>
       <textarea id="action" rows="2" placeholder="例：海中を探し続ける"></textarea>
-      <button id="randomAction">🎲 出してもらう</button>
-      <button class="ghost" id="hintAction">💡 思いつかない</button>
+      <button class="hint-main" id="hintAction">💡 自分で考えるヒント</button>
+      <button class="candidate-btn" id="randomAction">🎲 候補を見る</button>
       <div class="hint hide" id="hintBoxAction">
         <span>発想のヒント</span>
         <p id="hintTextAction"></p>
-        <button data-next-hint="展開">🔄 ちがうヒント</button>
+        <button data-next-hint="行動">🔄 ちがうヒント</button>
       </div>
     </div>
   </section>
@@ -81,8 +80,8 @@
     <b>6</b><div>
       <h2>最後にどうなる？</h2>
       <textarea id="ending" rows="2" placeholder="例：分身は未来の自分だったと分かる"></textarea>
-      <button id="randomEnding">🎲 出してもらう</button>
-      <button class="ghost" id="hintEnding">💡 思いつかない</button>
+      <button class="hint-main" id="hintEnding">💡 自分で考えるヒント</button>
+      <button class="candidate-btn" id="randomEnding">🎲 候補を見る</button>
       <div class="hint hide" id="hintBoxEnding">
         <span>発想のヒント</span>
         <p id="hintTextEnding"></p>
@@ -115,7 +114,7 @@
     <p id="copyStatus"></p>
   </section>
 
-  <footer>完成文ではなく、「自分で54字を書けるところまで」を目指すアプリです。</footer>
+  <footer>自分で考えることを中心に、必要なときだけヒントや候補を使えます。</footer>
 </main>
 <script src="script.js"></script>
 </body>
