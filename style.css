@@ -158,3 +158,21 @@ header h1{
   font-weight:900;
   letter-spacing:.02em;
 }
+
+/* アイデアだし太郎：確定画像＋タイトル調整 */
+header h1{
+  font-size:clamp(2.25rem,6.5vw,4.4rem);
+}
+.taro-image{
+  display:block;
+  width:min(250px,56vw);
+  height:auto;
+  margin:18px auto 0;
+  border-radius:22px;
+}
+@media(max-width:640px){
+  .taro-image{
+    width:min(220px,62vw);
+    margin-top:14px;
+  }
+}
