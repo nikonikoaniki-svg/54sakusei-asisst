@@ -142,3 +142,19 @@ footer{text-align:center;color:var(--muted);font-size:.86rem;padding:18px}
 .candidate-btn:hover{
   background:#ebe8e0;
 }
+
+/* タイトル */
+.title-sub{
+  font-size:clamp(.95rem,2.5vw,1.25rem);
+  font-weight:800;
+  letter-spacing:.08em;
+  color:var(--accent-dark);
+  margin-bottom:8px;
+}
+header h1{
+  font-size:clamp(2.8rem,8vw,5.4rem);
+  line-height:1.05;
+  margin:0;
+  font-weight:900;
+  letter-spacing:.02em;
+}
