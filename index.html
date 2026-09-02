@@ -12,14 +12,14 @@
   <header>
     <div class="seed">🌱</div>
     <h1>54字の種</h1>
-    <p>テーマから、物語の「柱」まで。書けないところだけ、ヒントや候補を使えます。</p>
+    <p>テーマから、物語の「柱」まで。書けないところだけ、候補やヒントを使えます。</p>
   </header>
 
   <section class="card">
     <b>1</b><div>
       <h2>どんなテーマで書きますか？</h2>
       <input id="theme1" type="text" placeholder="例：クジラ">
-      <button data-random-theme="theme1">🎲 出してもらう</button>
+      <button id="randomTheme1">🎲 出してもらう</button>
     </div>
   </section>
 
@@ -28,48 +28,15 @@
       <h2>もうひとつ、テーマを足しますか？</h2>
       <p class="sub">空欄でもOKです。</p>
       <input id="theme2" type="text" placeholder="例：分身">
-      <button data-random-theme="theme2">🎲 出してもらう</button>
+      <button id="randomTheme2">🎲 出してもらう</button>
       <button class="ghost" id="clearTheme2">空欄にする</button>
     </div>
   </section>
 
   <section class="card">
     <b>3</b><div>
-      <h2>主人公は？</h2>
-      <p class="sub">テーマとつながる主人公を優先して出します。</p>
-      <input id="protagonist" type="text" placeholder="例：クジラ">
-      <button id="useTheme1">テーマ①を主人公にする</button>
-      <button id="useTheme2">テーマ②を主人公にする</button>
-      <button id="randomRelatedProtagonist">🎲 テーマに関係する主人公</button>
-      <button class="ghost" id="randomFreeProtagonist">🎲 別の主人公</button>
-      <button class="ghost" id="hintProtagonist">💡 思いつかない</button>
-      <div class="hint hide" id="hintBoxProtagonist">
-        <span>発想のヒント</span>
-        <p id="hintTextProtagonist"></p>
-        <button data-next-hint="主人公">🔄 ちがうヒント</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <b>4</b><div>
-      <h2>主人公は、何をしたい？</h2>
-      <p class="sub">願い・目的を決めると、物語が動き始めます。</p>
-      <textarea id="desire" rows="2" placeholder="例：自分の分身に会いたい"></textarea>
-      <button id="randomDesire">🎲 出してもらう</button>
-      <button class="ghost" id="hintDesire">💡 思いつかない</button>
-      <div class="hint hide" id="hintBoxDesire">
-        <span>発想のヒント</span>
-        <p id="hintTextDesire"></p>
-        <button data-next-hint="展開">🔄 ちがうヒント</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <b>5</b><div>
       <h2>何が起こる？</h2>
-      <textarea id="event" rows="2" placeholder="例：分身が現れたという噂を聞く"></textarea>
+      <textarea id="event" rows="2" placeholder="例：クジラに分身が現れる"></textarea>
       <button id="randomEvent">🎲 出してもらう</button>
       <button class="ghost" id="hintEvent">💡 思いつかない</button>
       <div class="hint hide" id="hintBoxEvent">
@@ -81,9 +48,10 @@
   </section>
 
   <section class="card">
-    <b>6</b><div>
-      <h2>何が邪魔する？　何に困る？</h2>
-      <textarea id="trouble" rows="2" placeholder="例：同じ海にいるはずなのに、どうしても会えない"></textarea>
+    <b>4</b><div>
+      <h2>それで、どうなる？</h2>
+      <p class="sub">困りごと、障害、変化など。</p>
+      <textarea id="trouble" rows="2" placeholder="例：同じ海にいるはずなのに会えない"></textarea>
       <button id="randomTrouble">🎲 出してもらう</button>
       <button class="ghost" id="hintTrouble">💡 思いつかない</button>
       <div class="hint hide" id="hintBoxTrouble">
@@ -95,9 +63,9 @@
   </section>
 
   <section class="card">
-    <b>7</b><div>
-      <h2>主人公は、どうする？</h2>
-      <p class="sub">困りごとに対して、どんな行動をするか。</p>
+    <b>5</b><div>
+      <h2>どうする？</h2>
+      <p class="sub">起きたことに対して、どんな行動をする？</p>
       <textarea id="action" rows="2" placeholder="例：海中を探し続ける"></textarea>
       <button id="randomAction">🎲 出してもらう</button>
       <button class="ghost" id="hintAction">💡 思いつかない</button>
@@ -110,7 +78,7 @@
   </section>
 
   <section class="card">
-    <b>8</b><div>
+    <b>6</b><div>
       <h2>最後にどうなる？</h2>
       <textarea id="ending" rows="2" placeholder="例：分身は未来の自分だったと分かる"></textarea>
       <button id="randomEnding">🎲 出してもらう</button>
@@ -131,11 +99,9 @@
 
     <dl>
       <div><dt>テーマ</dt><dd id="resultThemes">—</dd></div>
-      <div><dt>主人公</dt><dd id="resultProtagonist">—</dd></div>
-      <div><dt>願い・目的</dt><dd id="resultDesire">—</dd></div>
       <div><dt>出来事</dt><dd id="resultEvent">—</dd></div>
-      <div><dt>障害・困りごと</dt><dd id="resultTrouble">—</dd></div>
-      <div><dt>主人公の行動</dt><dd id="resultAction">—</dd></div>
+      <div><dt>展開</dt><dd id="resultTrouble">—</dd></div>
+      <div><dt>行動</dt><dd id="resultAction">—</dd></div>
       <div><dt>最後</dt><dd id="resultEnding">—</dd></div>
     </dl>
 
