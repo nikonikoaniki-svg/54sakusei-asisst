@@ -118,7 +118,7 @@ function resetAll(){
 
 function copyResult(){
   const text=[
-    "🌱 54字の種ができました",
+    "🌱 アイデアの柱が立ちました！",
     `テーマ：${$("resultThemes").textContent}`,
     `出来事：${$("resultEvent").textContent}`,
     `展開：${$("resultTrouble").textContent}`,
