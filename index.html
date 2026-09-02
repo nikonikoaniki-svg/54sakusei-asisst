@@ -1,8 +1,156 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>54字の種</title><link rel="stylesheet" href="style.css"></head><body><main class="app"><header><div class="seed">🌱</div><div><h1>54字の種</h1><p>書けないときは、ひとつずつ。言葉を選び、変えながら、物語の柱をつくります。</p></div></header>
-<section class="card"><b>1</b><div><h2>どんなテーマで書きますか？</h2><input id="theme1" placeholder="例：月"><button data-theme="theme1">🎲 出してもらう</button></div></section>
-<section class="card"><b>2</b><div><h2>もうひとつ、テーマを足しますか？</h2><p class="sub">空欄のままでも進めます。</p><input id="theme2" placeholder="例：蝶（なくてもOK）"><button data-theme="theme2">🎲 出してもらう</button><button id="clear2" class="ghost">空欄にする</button></div></section>
-<section class="card"><b>3</b><div><h2>主人公は？</h2><input id="protagonist" placeholder="自分で入力してもOK"><button id="rp">🎲 出してもらう</button><button id="hp" class="ghost">💡 思いつかない</button><div id="hbp" class="hint hide"><span>発想のヒント</span><p id="htp"></p><button data-hint="主人公">🔄 ちがうヒント</button></div></div></section>
-<section class="card"><b>4</b><div><h2>何が起こる？</h2><textarea id="event" placeholder="自分で入力してもOK"></textarea><button id="re">🎲 出してもらう</button><button id="he" class="ghost">💡 思いつかない</button><div id="hbe" class="hint hide"><span>発想のヒント</span><p id="hte"></p><button data-hint="出来事">🔄 ちがうヒント</button></div></div></section>
-<section class="card"><b>5</b><div><h2>それで、どうなる？</h2><p class="sub">困りごと、障害、展開など。</p><textarea id="trouble" placeholder="自分で入力してもOK"></textarea><button id="rt">🎲 出してもらう</button><button id="ht" class="ghost">💡 思いつかない</button><div id="hbt" class="hint hide"><span>発想のヒント</span><p id="htt"></p><button data-hint="展開">🔄 ちがうヒント</button></div></div></section>
-<section class="card"><b>6</b><div><h2>最後にどうなる？</h2><p class="sub">オチ、変化、余韻など。</p><textarea id="ending" placeholder="自分で入力してもOK"></textarea><button id="rn">🎲 出してもらう</button><button id="hn" class="ghost">💡 思いつかない</button><div id="hbn" class="hint hide"><span>発想のヒント</span><p id="htn"></p><button data-hint="オチ">🔄 ちがうヒント</button></div></div></section>
-<section class="result"><div class="resulthead"><span>🌱</span><div><small>あなたの発想メモ</small><h2>54字の種ができました</h2></div></div><dl><div><dt>テーマ</dt><dd id="rthemes">—</dd></div><div><dt>主人公</dt><dd id="rpv">—</dd></div><div><dt>出来事</dt><dd id="rev">—</dd></div><div><dt>展開</dt><dd id="rtv">—</dd></div><div><dt>最後</dt><dd id="rnv">—</dd></div></dl><div class="pillar"><small>物語の柱</small><p id="pillar">テーマを入れると、ここに「54字の種」が育っていきます。</p></div><button id="copy" class="primary">📋 種をコピー</button><button id="reset">↺ はじめから</button><p id="status"></p></section><footer>完成文をつくるアプリではありません。思いつくための「種」をつくるアプリです。</footer></main><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="54字の物語を書きたい人のための発想支援アプリ">
+  <title>54字の種</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="seed">🌱</div>
+    <h1>54字の種</h1>
+    <p>テーマから、物語の「柱」まで。書けないところだけ、ヒントや候補を使えます。</p>
+  </header>
+
+  <section class="card">
+    <b>1</b><div>
+      <h2>どんなテーマで書きますか？</h2>
+      <input id="theme1" type="text" placeholder="例：クジラ">
+      <button data-random-theme="theme1">🎲 出してもらう</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>2</b><div>
+      <h2>もうひとつ、テーマを足しますか？</h2>
+      <p class="sub">空欄でもOKです。</p>
+      <input id="theme2" type="text" placeholder="例：分身">
+      <button data-random-theme="theme2">🎲 出してもらう</button>
+      <button class="ghost" id="clearTheme2">空欄にする</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>3</b><div>
+      <h2>主人公は？</h2>
+      <p class="sub">テーマとつながる主人公を優先して出します。</p>
+      <input id="protagonist" type="text" placeholder="例：クジラ">
+      <button id="useTheme1">テーマ①を主人公にする</button>
+      <button id="useTheme2">テーマ②を主人公にする</button>
+      <button id="randomRelatedProtagonist">🎲 テーマに関係する主人公</button>
+      <button class="ghost" id="randomFreeProtagonist">🎲 別の主人公</button>
+      <button class="ghost" id="hintProtagonist">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxProtagonist">
+        <span>発想のヒント</span>
+        <p id="hintTextProtagonist"></p>
+        <button data-next-hint="主人公">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>4</b><div>
+      <h2>主人公は、何をしたい？</h2>
+      <p class="sub">願い・目的を決めると、物語が動き始めます。</p>
+      <textarea id="desire" rows="2" placeholder="例：自分の分身に会いたい"></textarea>
+      <button id="randomDesire">🎲 出してもらう</button>
+      <button class="ghost" id="hintDesire">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxDesire">
+        <span>発想のヒント</span>
+        <p id="hintTextDesire"></p>
+        <button data-next-hint="展開">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>5</b><div>
+      <h2>何が起こる？</h2>
+      <textarea id="event" rows="2" placeholder="例：分身が現れたという噂を聞く"></textarea>
+      <button id="randomEvent">🎲 出してもらう</button>
+      <button class="ghost" id="hintEvent">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxEvent">
+        <span>発想のヒント</span>
+        <p id="hintTextEvent"></p>
+        <button data-next-hint="出来事">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>6</b><div>
+      <h2>何が邪魔する？　何に困る？</h2>
+      <textarea id="trouble" rows="2" placeholder="例：同じ海にいるはずなのに、どうしても会えない"></textarea>
+      <button id="randomTrouble">🎲 出してもらう</button>
+      <button class="ghost" id="hintTrouble">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxTrouble">
+        <span>発想のヒント</span>
+        <p id="hintTextTrouble"></p>
+        <button data-next-hint="展開">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>7</b><div>
+      <h2>主人公は、どうする？</h2>
+      <p class="sub">困りごとに対して、どんな行動をするか。</p>
+      <textarea id="action" rows="2" placeholder="例：海中を探し続ける"></textarea>
+      <button id="randomAction">🎲 出してもらう</button>
+      <button class="ghost" id="hintAction">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxAction">
+        <span>発想のヒント</span>
+        <p id="hintTextAction"></p>
+        <button data-next-hint="展開">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <b>8</b><div>
+      <h2>最後にどうなる？</h2>
+      <textarea id="ending" rows="2" placeholder="例：分身は未来の自分だったと分かる"></textarea>
+      <button id="randomEnding">🎲 出してもらう</button>
+      <button class="ghost" id="hintEnding">💡 思いつかない</button>
+      <div class="hint hide" id="hintBoxEnding">
+        <span>発想のヒント</span>
+        <p id="hintTextEnding"></p>
+        <button data-next-hint="オチ">🔄 ちがうヒント</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="result">
+    <div class="resulthead">
+      <span>🌱</span>
+      <div><small>あなたの発想メモ</small><h2>54字の種ができました</h2></div>
+    </div>
+
+    <dl>
+      <div><dt>テーマ</dt><dd id="resultThemes">—</dd></div>
+      <div><dt>主人公</dt><dd id="resultProtagonist">—</dd></div>
+      <div><dt>願い・目的</dt><dd id="resultDesire">—</dd></div>
+      <div><dt>出来事</dt><dd id="resultEvent">—</dd></div>
+      <div><dt>障害・困りごと</dt><dd id="resultTrouble">—</dd></div>
+      <div><dt>主人公の行動</dt><dd id="resultAction">—</dd></div>
+      <div><dt>最後</dt><dd id="resultEnding">—</dd></div>
+    </dl>
+
+    <div class="pillar">
+      <small>物語の柱</small>
+      <p id="resultPillar">テーマを入れると、ここに物語の柱が育っていきます。</p>
+    </div>
+
+    <button class="primary" id="copyResult">📋 種をコピー</button>
+    <button id="resetAll">↺ はじめから</button>
+    <p id="copyStatus"></p>
+  </section>
+
+  <footer>完成文ではなく、「自分で54字を書けるところまで」を目指すアプリです。</footer>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
